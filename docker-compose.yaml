@@ -5,14 +5,18 @@ services:
     image: drupal:10.1.7-php8.2
     container_name: drupalservice
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       - MYSQL_DATABASE=drupal
       - MYSQL_USER=user
       - MYSQL_PASSWORD=Abc,1qaz
       - MYSQL_ROOT_PASSWORD=abc123
     volumes:
-      - ./var/www/html/sites
+      - ./modules:/var/www/html/modules
+      - ./profiles:/var/www/html/profiles
+      - ./themes:/var/www/html/themes
+      - ./sites:/var/www/html/sites
+
     depends_on:
       - mysql
 
@@ -27,4 +31,4 @@ services:
       - MYSQL_DATABASE=bancoteste
       - MYSQL_ROOT_PASSWORD=abc123
     volumes:
-      - .var/lib/mysql
+      - ./mysql_data:/var/lib/mysql
