@@ -12,13 +12,14 @@ services:
       - MYSQL_PASSWORD=Abc,1qaz
       - MYSQL_ROOT_PASSWORD=abc123
     volumes:
-      - ./modules:/var/www/html/modules
-      - ./profiles:/var/www/html/profiles
-      - ./themes:/var/www/html/themes
-      - ./sites:/var/www/html/sites
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/themes
+      - /var/www/html/sites 
 
     depends_on:
       - mysql
+    restart: alwaya
 
   mysql:
     image: mysql:5.7
