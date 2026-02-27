@@ -15,7 +15,8 @@ services:
       - ./modules:/var/www/html/modules
       - ./profiles:/var/www/html/profiles
       - ./themes:/var/www/html/themes
-      - ./sites:/var/www/html/sites 
+      - ./sites:/var/www/html/sites
+      - ./translation:/sites/default/files/translations 
 
     depends_on:
       - mysql
