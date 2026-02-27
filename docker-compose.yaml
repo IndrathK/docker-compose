@@ -1,0 +1,35 @@
+version: "3.9"  # versão do formato do Compose
+
+services:
+  drupal:
+    image: drupal:10.1.7-php8.2
+    container_name: drupalservice
+    ports:
+      - "80:80"
+    environment:
+      - MYSQL_DATABASE=drupal
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=Abc,1qaz
+      - MYSQL_ROOT_PASSWORD=abc123
+    volumes:
+      - ./modules:/var/www/html/modules
+      - ./profiles:/var/www/html/profiles
+      - ./themes:/var/www/html/themes
+      - ./sites:/var/www/html/sites
+
+    depends_on:
+      - mysql
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=Abc,1qaz
+      - MYSQL_DATABASE=bancoteste
+      - MYSQL_ROOT_PASSWORD=abc123
+    volumes:
+      - ./mysql_data:/var/lib/mysql
